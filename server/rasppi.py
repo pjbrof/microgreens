@@ -1,15 +1,11 @@
 import serial
 
-port = "/dev/ttyACM0"  # put your port here
-baudrate = 9600
-ser = serial.Serial(port, baudrate)
+if __name__ == '__main__':
+    
+    ser = serial.Serial('/dev/tty.usbmodem14201', 9600, timeout=1)
+    ser.flush()
 
-
-def tell(msg):
-    msg = msg + '\n'
-    x = msg.encode('ascii')  # encode n send
-    ser.write(x)
-
-
-def hear():
-    msg = ser.read_until()  # read until a new line
+    while True:
+        if ser.in_waiting > 0:
+            line = ser.readline().decode('utf-8').rstrip()
+            print(line)

@@ -1,2 +1,3 @@
 flask
 pysqlite3
+pyserial

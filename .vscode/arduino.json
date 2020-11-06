@@ -1,6 +1,6 @@
 {
-    "sketch": "Photo.ino",
-    "port": "COM5",
+    "sketch": "arduino/RaspiTest/RaspiTest.ino",
+    "port": "/dev/tty.usbmodem14201",
     "board": "arduino:avr:uno",
     "output": "../build",
     "debugger": "jlink",
