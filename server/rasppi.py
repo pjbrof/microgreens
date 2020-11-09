@@ -2,7 +2,7 @@ import serial
 
 if __name__ == '__main__':
     
-    ser = serial.Serial('/dev/tty.usbmodem14201', 9600, timeout=1)
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1) # Mac: /dev/tty.usbmodem14201
     ser.flush()
 
     while True:
