@@ -1,13 +1,8 @@
 from flask import Flask, request, jsonify
 import datetime
-import json
 import sqlite3
-import serial
 
 app = Flask(__name__)
-
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-ser.flush()
 
 def db_connection():
     conn = None
@@ -56,23 +51,6 @@ def grow():
     # ]
     # if today is not None:
     #     return jsonify(today)
-
-def writeToDB(arduinoData):
-    conn = db_connection()
-    cursor = conn.cursor()
-
-    new_date = datetime.datetime.now()
-    sql = """INSERT INTO grow (date, temp, humidity, light_top, light_bottom)
-                VALUES (?, ?, ?, ?, ?)"""
-    cursor = cursor.execute(sql, (new_date, arduinoData[0], arduinoData[1], arduinoData[2], arduinoData[3]))
-    conn.commit()
-    return f"Grow with the id: 0 created successfully", 201
-
-
-while True:
-    if ser.in_waiting > 0:
-        line = ser.readline().decode('utf-8').rstrip().split(',')
-        writeToDB(line)
 
 
 if __name__ == "__main__":
