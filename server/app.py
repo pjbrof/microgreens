@@ -20,7 +20,7 @@ def grow():
     if request.method == "GET":
         cursor = conn.execute("SELECT * FROM grow")
         grow = [
-            dict(id=row[0], date=row[1], temp=row[2])
+            dict(id=row[0], date=row[1], temp=row[2], humidity=row[3], light_top=row[4], light_bottom=row[5])
             for row in cursor.fetchall()
         ]
         if grow is not None:
