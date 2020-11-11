@@ -38,22 +38,20 @@ def grow():
         return f"Grow with the id: 0 created successfully", 201
 
 
-# @app.route("/api/v1/today", methods=["GET"])
-# def today():
-#     conn = db_connection()
-#     cursor = conn.cursor()
+@app.route("/api/v1/current", methods=["GET"])
+def current():
+    conn = db_connection()
+    cursor = conn.cursor()
 
-    # + str(datetime.date.today()))
-
-    # cursor = conn.execute(
-    #     "SELECT * FROM grow WHERE date(datetime(date)) = date('now')"
-    # today=[
-    #     dict(id=row[0], date=row[1], temp=row[2])
-    #     for row in cursor.fetchall()
-    # ]
-    # if today is not None:
-    #     return jsonify(today)
+    if request.method == "GET":
+        cursor = conn.execute("SELECT * FROM grow ORDER BY ID DESC LIMIT 1")
+        current = [
+            dict(id=row[0], date=row[1], temp=row[2], humidity=row[3], light_top=row[4], light_bottom=row[5])
+            for row in cursor.fetchall()
+        ]
+        if current is not None:
+            return jsonify(current)
 
 
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=3000)
+   app.run(host='0.0.0.0', port=5000)

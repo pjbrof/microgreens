@@ -9,10 +9,6 @@ sql_query = """ CREATE TABLE grow (
     temp integer,
     humidity integer,
     light_top integer,
-    light_bottom integer,
-    soil_topleft integer,
-    soil_topright integer,
-    soil_bottomleft integer,
-    soil_bottomright integer
+    light_bottom integer
 )"""
 cursor.execute(sql_query)
