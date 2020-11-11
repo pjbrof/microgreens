@@ -1,3 +1,6 @@
 flask
+flask-cors
 pysqlite3
 pyserial
+datetime
+time
