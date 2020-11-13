@@ -1,45 +1,61 @@
 import React, { useState, useEffect } from "react";
+import DataTable from "react-data-table-component";
+
+const intervalConstant = 300000;
+
+const columns = [
+  {
+    name: "Date",
+    selector: "date",
+    sortable: true,
+  },
+  {
+    name: "Temperature",
+    selector: "temp",
+    sortable: true,
+  },
+  {
+    name: "Humidity",
+    selector: "humidity",
+    sortable: true,
+  },
+  {
+    name: "Light Top Tray",
+    selector: "light_top",
+    sortable: true,
+  },
+  {
+    name: "Light Bottom Tray",
+    selector: "light_bottom",
+    sortable: true,
+  },
+];
 
 const Table = () => {
-  const [microgreenData, setMicrogreenData] = useState({});
+  const [microgreenData, setMicrogreenData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () =>
-      await fetch("http://192.168.1.19/api/v1/grow")
+    setInterval(async () => {
+      await fetch("http://192.168.1.19:5000/api/v1/grow")
         .then((res) => res.json())
         .then((data) => setMicrogreenData(data))
         .catch((err) => {
           throw new Error(err);
         });
-
-    fetchData();
+    }, intervalConstant);
   }, []);
 
-  console.log(microgreenData);
-
   return (
-    <table border="1">
-      <tr>
-        <th>ID</th>
-        <th>Date</th>
-        <th>Temp</th>
-        <th>Humidity</th>
-        <th>Light 1</th>
-        <th>Light 2</th>
-      </tr>
-      {/* {microgreenData.map((value) => {
-        return (
-          <tr>
-            <td>{value.id}</td>
-            <td>{value.date.toLocaleString()}</td>
-            <td>{value.temp}</td>
-            <td>{value.humidity}</td>
-            <td>{value.light_top}</td>
-            <td>{value.light_bottom}</td>
-          </tr>
-        );
-      })} */}
-    </table>
+    <div className="dt">
+      <DataTable
+        columns={columns}
+        data={microgreenData}
+        highlightOnHover
+        striped
+        fixedHeader
+        pagination
+      />
+    </div>
   );
 };
 

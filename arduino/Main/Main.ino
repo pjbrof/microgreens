@@ -25,7 +25,7 @@ void setup()
   dht.humidity().getSensor(&sensor);
 
   // delayMS = sensor.min_delay / 1000;
-  delayMS = 10000;
+  delayMS = 300000;
 }
 
 void loop()

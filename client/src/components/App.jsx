@@ -11,6 +11,7 @@ const App = () => {
       <Context.Provider value={{ store, dispatch }}>
         <h1>{store.title}</h1>
         <Table />
+        {/* <img src={fan} className="fan" alt="fan" /> */}
       </Context.Provider>
     </>
   );

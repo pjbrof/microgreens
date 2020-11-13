@@ -41,3 +41,29 @@ table {
   fill: none;
   stroke: steelblue;
 }
+
+.fan {
+  height: 100px;
+  width: 100px;
+  animation: spin 0.7s linear 0s infinite forwards;
+  border: 5px solid black;
+  fill: green;
+  border-radius: 50%;
+}
+
+.dt {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@keyframes spin {
+  from {
+    transform: rotateZ(0deg);
+  }
+
+  to {
+    transform: rotateZ(359deg);
+  }
+}
