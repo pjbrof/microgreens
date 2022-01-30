@@ -2,7 +2,7 @@
 #include <DHT.h>
 #include <DHT_U.h>
 
-#define DHTPIN 2
+#define DHTPIN 5
 
 #define DHTTYPE DHT11
 
@@ -25,7 +25,7 @@ void setup()
   dht.humidity().getSensor(&sensor);
 
   // delayMS = sensor.min_delay / 1000;
-  delayMS = 300000;
+  delayMS = 3000; // 300000
 }
 
 void loop()
@@ -45,7 +45,7 @@ void loop()
   Serial.print(",");
 
   lightSensor1 = analogRead(A0);
-  lightSensor2 = analogRead(A1);
+  lightSensor2 = analogRead(A2);
 
   Serial.print(lightSensor1);
   Serial.print(",");
